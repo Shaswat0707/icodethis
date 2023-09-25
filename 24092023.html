@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Wallet Balance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #f2f4f5;
+            margin: 8rem 30rem;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 300;
+        }
+
+        main.main {
+            background-image: linear-gradient(225deg,
+                    hsl(268deg 44% 68%) 0%,
+                    hsl(256deg 47% 71%) 30%,
+                    hsl(245deg 51% 74%) 38%,
+                    hsl(234deg 56% 74%) 44%,
+                    hsl(226deg 63% 74%) 48%,
+                    hsl(219deg 67% 74%) 51%,
+                    hsl(215deg 70% 74%) 55%,
+                    hsl(211deg 72% 74%) 61%,
+                    hsl(207deg 73% 74%) 69%,
+                    hsl(204deg 72% 75%) 100%);
+            border-radius: 0.25rem;
+            display: block;
+            position: relative;
+            transform: scale(1, 1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            color: #f2f4f5;
+            padding: 1.5rem 2rem;
+            font-size: x-large;
+        }
+
+        .nav .item.active {
+            position: relative;
+        }
+
+        .nav .item.active .dot {
+            position: absolute;
+            background-color: #7bfecb;
+            width: 0.35rem;
+            height: 0.35rem;
+            top: 0;
+            right: -0.25rem;
+            border-radius: 100%;
+        }
+
+        .balance {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #f2f4f5;
+            align-items: center;
+            padding: 3rem 3.5rem;
+            text-transform: capitalize;
+        }
+
+        .balance .text {
+            font-size: 3rem;
+        }
+
+        .balance .number {
+            font-size: 3.5rem;
+            font-weight: 500;
+        }
+
+        section.section {
+            background: #ffffff;
+            color: #868686;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 2rem;
+        }
+
+        .receipt {
+            font-size: 1.05rem;
+            margin-top: 1.5rem;
+        }
+
+        .receipt .company-name {
+            font-weight: 1000;
+            padding-bottom: 0.15rem;
+        }
+
+        .receipt .pending-payment {
+            font-weight: 500;
+            padding-bottom: 0.5rem;
+        }
+
+        .receipt .message {
+            font-size: 0.8rem;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            border: 2px solid #9a9bfa;
+            border-radius: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .actions .reminder {
+            padding: 0.5rem 0rem;
+            padding-left: 1rem;
+        }
+
+        .actions .edit-amount {
+            border-left: 2px solid #9a9bfa;
+            border-right: 2px solid #9a9bfa;
+            padding: 0.5rem 3rem;
+        }
+
+        .actions .cancel {
+            padding: 0.5rem 0rem;
+            padding-right: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main">
+        <nav class="nav">
+            <i class="fa fa-bars"></i>
+            <div class="item active">
+                <div class="dot"></div> Summary
+            </div>
+            <div class="item">Activity</div>
+            <div class="item">Send/request</div>
+        </nav>
+        <div class="balance">
+            <div class="text">Your Balance</div>
+            <div class="number">244.53 USD</div>
+        </div>
+    </main>
+    <section class="section">
+        <div class="receipt">
+            <div class="company-name">Company Inc.</div>
+            <div class="pending-payment">Payment request for 280,000 CAD sent</div>
+            <div class="message">Company Inc. hasn't paid yet</div>
+            <div class="actions">
+                <div class="reminder">Send Reminder</div>
+                <div class="edit-amount">Edit Amount</div>
+                <div class="cancel">Cancel</div>
+            </div>
+        </div>
+        <div class="receipt">
+            <div class="company-name">Company Inc.</div>
+            <div class="pending-payment">Payment request for 350,000 CAD sent</div>
+            <div class="message">Company Inc. hasn't paid yet</div>
+            <div class="actions">
+                <div class="reminder">Send Reminder</div>
+                <div class="edit-amount">Edit Amount</div>
+                <div class="cancel">Cancel</div>
+            </div>
+        </div>
+        <div class="receipt">
+            <div class="company-name">Company Inc.</div>
+            <div class="pending-payment">Payment request for 980,000 CAD sent</div>
+            <div class="message">Company Inc. hasn't paid yet</div>
+            <div class="actions">
+                <div class="reminder">Send Reminder</div>
+                <div class="edit-amount">Edit Amount</div>
+                <div class="cancel">Cancel</div>
+            </div>
+        </div>
+    </section>
+    <script>
+    </script>
+</body>
+
+</html>
