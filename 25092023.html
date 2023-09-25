@@ -186,6 +186,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            flex: 0 0 5.5rem;
         }
 
         .days .icon {
@@ -366,7 +367,7 @@
                         </g>
                     </svg>
                 </div>
-                <div class="minmax">15&deg; / 4&deg;</div>
+                <div class="minmax"><span class="temp">15</span>&deg; / <span class="temp">4</span>&deg;</div>
             </div>
             <div class="days">
                 <div class="day">SAT</div>
@@ -392,7 +393,7 @@
                         </g>
                     </svg>
                 </div>
-                <div class="minmax">22&deg; / 7&deg;</div>
+                <div class="minmax"><span class="temp">22</span>&deg; / <span class="temp">7</span>&deg;</div>
             </div>
             <div class="days">
                 <div class="day">SUN</div>
@@ -418,7 +419,7 @@
                         </g>
                     </svg>
                 </div>
-                <div class="minmax">22&deg; / 9&deg;</div>
+                <div class="minmax"><span class="temp">22</span>&deg; / <span class="temp">9</span>&deg;</div>
             </div>
             <div class="days">
                 <div class="day">MON</div>
@@ -443,7 +444,7 @@
                         </g>
                     </svg>
                 </div>
-                <div class="minmax">25&deg; / 14&deg;</div>
+                <div class="minmax"><span class="temp">25</span>&deg; / <span class="temp">14</span>&deg;</div>
             </div>
             <div class="days">
                 <div class="day">TUE</div>
@@ -466,7 +467,7 @@
                                 stroke-linecap="round"></path>
                         </g>
                     </svg></div>
-                <div class="minmax">25&deg; / 14&deg;</div>
+                <div class="minmax"><span class="temp">25</span>&deg; / <span class="temp">14</span>&deg;</div>
             </div>
             <div class="days">
                 <div class="day">WED</div>
@@ -489,7 +490,7 @@
                                 stroke-linecap="round"></path>
                         </g>
                     </svg></div>
-                <div class="minmax">26&deg; / 18&deg;</div>
+                <div class="minmax"><span class="temp">26</span>&deg; / <span class="temp">18</span>&deg;</div>
             </div>
         </div>
     </main>
@@ -497,6 +498,7 @@
         const constants = {
             "temperature": 9,
             "min": 3,
+            "temp": [15, 4, 22, 7, 22, 9, 25, 14, 25, 14, 26, 18],
         }
         const celsius = document.getElementById("celsius");
         const fahrenheit = document.getElementById("fahrenheit");
@@ -504,6 +506,7 @@
         const temperature = document.querySelector(".temperature");
         const minTemp = document.querySelector(".min-temp");
         const minimumTemperature = document.getElementById("min");
+        const temperatures = document.getElementsByClassName("temp");
 
         const convertToFahrenheit = (celsius) => (celsius * 9 / 5) + 32;
 
@@ -511,6 +514,9 @@
             if (!celsius.classList.contains("active")) {
                 temperature.innerHTML = constants.temperature;
                 minTemp.innerHTML = `MIN ${constants.min} &deg;C`;
+                for (let i = 0; i < temperatures.length; i++) {
+                    temperatures[i].innerHTML = constants.temp[i];
+                }
             }
             for (const s of scale) {
                 s.classList.remove("active");
@@ -523,12 +529,14 @@
                 temperature.innerHTML = Math.floor(convertToFahrenheit(temperature.innerHTML));
                 let temp = Math.floor(convertToFahrenheit(minimumTemperature.innerHTML));
                 minTemp.innerHTML = `MIN ${temp} &deg;F`;
+                for (const temperature of temperatures) {
+                    temperature.innerHTML = Math.floor(convertToFahrenheit(temperature.innerHTML));
+                }
             }
             for (const s of scale) {
                 s.classList.remove("active");
             }
             fahrenheit.classList.add("active");
-            console.log(fahrenheit.classList)
         })
     </script>
 </body>
