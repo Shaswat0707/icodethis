@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-color: black;
+            margin: 0em;
+            overflow: hidden;
+        }
+
+        #image-track>.image {
+            width: 40vmin;
+            height: 56vmin;
+            object-fit: cover;
+            object-position: 100% 50%;
+        }
+
+        #image-track {
+            display: flex;
+            gap: 4vmin;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(0%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <main id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+        <img class="image" alt="img1"
+            src="https://images.unsplash.com/photo-1695718948137-1f4d1d5ba889?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            draggable="false" />
+        <img class="image" alt="img2"
+            src="https://images.unsplash.com/photo-1695748216442-5eaad91860f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2144&q=80"
+            draggable="false" />
+        <img class="image" alt="img3"
+            src="https://images.unsplash.com/photo-1695631590069-08dfd73bdb83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            draggable="false" />
+        <img class="image" alt="img4"
+            src="https://images.unsplash.com/photo-1695456527397-0b9e1c79fe96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            draggable="false" />
+        <img class="image" alt="img5"
+            src="https://images.unsplash.com/photo-1695455061112-87e2cee1647c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            draggable="false" />
+        <img class="image" alt="img6"
+            src="https://images.unsplash.com/photo-1695669882447-1de80022ff21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+            draggable="false" />
+        <img class="image" alt="img7"
+            src="https://images.unsplash.com/photo-1695669089599-9461b72d6643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            draggable="false" />
+        <img class="image" alt="img8"
+            src="https://images.unsplash.com/photo-1665658115136-bf3fcb10a3c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
+            draggable="false" />
+    </main>
+    <script>
+        const track = document.getElementById("image-track");
+        window.onmousedown = e => {
+            track.dataset.mouseDownAt = e.clientX;
+        }
+        window.onmousemove = e => {
+            if (track.dataset.mouseDownAt === "0")
+                return;
+            const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+                maxDelta = window.innerWidth / 2;
+
+            const percentage = (mouseDelta / maxDelta) * -100,
+                nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
+                nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
+
+            track.dataset.percentage = nextPercentage;
+
+            // track.style.transform = `translate(${nextPercentage}%, -50%)`;
+            track.animate({
+                transform: `translate(${nextPercentage}%, -50%)`
+            }, { duration: 1200, fill: "forwards" });
+
+            for (const image of track.getElementsByClassName("image")) {
+                // image.style.objectPosition = `${nextPercentage + 100}% 50%`;
+                image.animate({
+                    objectPosition: `${100 + nextPercentage}% center`
+                }, { duration: 1200, fill: "forwards" });
+            }
+        }
+        window.onmouseup = e => {
+            track.dataset.mouseDownAt = "0";
+            track.dataset.prevPercentage = track.dataset.percentage;
+        }
+    </script>
+</body>
+
+</html>
