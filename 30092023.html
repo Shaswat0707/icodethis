@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Users Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8f9fd;
+            height: 100vh;
+            width: 100vw;
+            font-family: 'Noto Sans', sans-serif;
+            --opacity: 0;
+            --gray: #676a80;
+            --blue: #10182f;
+        }
+
+        main {
+            position: relative;
+        }
+
+        button {
+            border: 1px solid var(--gray);
+            background-color: white;
+            padding: 0.5rem 2rem;
+            border-radius: 2rem;
+            color: var(--gray);
+            transition: all 0.5s ease;
+        }
+
+        button:hover {
+            background: var(--blue);
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover svg {
+            fill: white;
+        }
+
+        .name {
+            font-weight: 500;
+        }
+
+        .image {
+            background-position: center !important;
+            background-size: cover !important;
+            border-radius: 50%;
+        }
+
+        .div {
+            background: white;
+            -webkit-box-shadow: 0px 16px 16px 0px rgba(237, 237, 251, 1);
+            -moz-box-shadow: 0px 16px 16px 0px rgba(237, 237, 251, 1);
+            box-shadow: 0px 16px 16px 0px rgba(237, 237, 251, 1);
+        }
+
+        @keyframes fadeInRight {
+            0% {
+                opacity: 0;
+                transform: translate(-100%, 0%);
+            }
+
+            30%,
+            100% {
+                opacity: 1;
+                transform: translate(0%, 0%);
+            }
+        }
+
+        @keyframes fadeOutRight {
+            from {
+                opacity: 1;
+                transform: translate(0%, 0%);
+            }
+
+            to {
+                opacity: 0;
+                display: none;
+                transform: translate(100%, 0%);
+            }
+        }
+
+        .fadeInAnimation {
+            animation: fadeInRight 5s ease forwards;
+            animation-delay: calc(var(--order) * 200ms);
+        }
+
+        .fadeOutAnimation {
+            animation: fadeOutRight 2s ease forwards;
+            animation-delay: calc(var(--order) * 200ms);
+        }
+
+        .small-div {
+            display: flex;
+            width: 30rem;
+            align-items: center;
+            padding: 2rem;
+            gap: 1rem;
+            height: 8rem;
+            margin-bottom: 1rem;
+            opacity: 1;
+            transform: translate(-100%, 0%);
+        }
+
+        .small-div .profile-pic {
+            width: 4rem;
+            height: 4rem;
+        }
+
+        .small-div .description {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .small-div .description .followers {
+            color: var(--gray);
+            font-size: 0.75rem;
+        }
+
+        .small-div .follow-button {
+            margin-left: auto;
+        }
+
+        .middle-div {
+            display: flex;
+            flex-direction: column;
+            width: 25rem;
+            gap: 2rem;
+            margin-left: 5rem;
+            padding-bottom: 2rem;
+            align-items: center;
+            /* position: relative; */
+            height: 27.25rem;
+            opacity: 0;
+            transform: translate(-100%, 0%);
+            position: absolute;
+            top: 0;
+        }
+
+        .middle-div .wallpaper {
+            background: var(--wallpaper);
+            width: 100%;
+            background-size: cover;
+            height: 12rem;
+        }
+
+        .middle-div .profile-pic {
+            height: 2rem;
+        }
+
+        .middle-div .profile-pic .big-one {
+            background: var(--profile-pic);
+            width: 6rem;
+            height: 6rem;
+            transform: translateY(-5rem);
+        }
+
+        .middle-div .profile-pic .small-one {
+            background: var(--profile-pic);
+            width: 2rem;
+            height: 2rem;
+            transform: translate(-13rem, -6rem);
+        }
+
+        .middle-div .name-div .handle {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .last-div {
+            display: flex;
+            flex-direction: column;
+            width: 30rem;
+            margin-left: 1rem;
+            padding-bottom: 1rem;
+            height: 35rem;
+            transform: translate(-100%, 0%);
+            position: absolute;
+            top: 0;
+            opacity: 0;
+        }
+
+        .last-div .top-div {
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            gap: 1rem;
+        }
+
+        .last-div .profile-pic {
+            width: 4rem;
+            height: 4rem;
+            background: var(--profile-pic);
+        }
+
+        .last-div .description {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .last-div .description .followers {
+            color: var(--gray);
+            font-size: 0.75rem;
+        }
+
+        .last-div .follow-button {
+            margin-left: auto;
+        }
+
+        .last-div .wallpaper {
+            background: var(--wallpaper);
+            width: 100%;
+            background-size: cover;
+            height: 20rem;
+        }
+
+        .last-div .views-and-place {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 0.8rem;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .last-div .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+        }
+
+        .last-div .buttons button {
+            width: 10rem;
+        }
+
+        .last-div .buttons .share {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .last-div .buttons .share span {
+            height: 1.25rem;
+            width: 1.25rem;
+        }
+
+        .view-port {
+            /* overflow: hidden; */
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .first-div {
+            height: 40rem;
+            width: 35rem;
+            padding: 2rem;
+            position: fixed;
+            top: 5vh;
+            left: 30vw;
+            overflow: hidden;
+        }
+
+        .middle-div:hover,
+        .small-div:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="view-port" style="background: url;">
+
+            <div class="first-div">
+                <div class="last-div div">
+                    <div class="top-div">
+                        <div class="profile-pic image">
+                        </div>
+                        <div class="description">
+                            <div class="name"></div>
+                            <div class="followers"></div>
+                        </div>
+                        <div class="follow-button">
+                            <button class="follow">Follow</button>
+                        </div>
+                    </div>
+                    <div class="wallpaper"></div>
+                    <div class="views-and-place">
+                        <div class="views"></div>
+                        <div class="place"></div>
+                    </div>
+                    <div class="buttons">
+                        <button class="free-download">Free Download</button>
+                        <button class="share">Share
+                            <span>
+                                <svg viewBox="0 0 24 24" fill="#676a80" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M15.4306 7.70172C7.55045 7.99826 3.43929 15.232 2.17021 19.3956C2.07701 19.7014 2.31139 20 2.63107 20C2.82491 20 3.0008 19.8828 3.08334 19.7074C6.04179 13.4211 12.7066 12.3152 15.514 12.5639C15.7583 12.5856 15.9333 12.7956 15.9333 13.0409V15.1247C15.9333 15.5667 16.4648 15.7913 16.7818 15.4833L20.6976 11.6784C20.8723 11.5087 20.8993 11.2378 20.7615 11.037L16.8456 5.32965C16.5677 4.92457 15.9333 5.12126 15.9333 5.61253V7.19231C15.9333 7.46845 15.7065 7.69133 15.4306 7.70172Z"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="middle-div div" onclick="handleMidDivClick()">
+                    <div class="wallpaper"></div>
+                    <div class="profile-pic">
+                        <div class="big-one image"></div>
+                        <div class="small-one image"></div>
+                    </div>
+                    <div class="name-div">
+                        <div class="name"></div>
+                        <div class="handle"></div>
+                    </div>
+                    <div class="follow-button">
+                        <button class="follow">Follow</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </main>
+    <script>
+        const people = [
+            {
+                name: "Carrie Brewer",
+                followers: 214,
+                views: "8.78",
+                place: "Ljubljana, Slovenia",
+                wallpaper: "url(https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)",
+                profilePic: "url(https://images.unsplash.com/photo-1509839862600-309617c3201e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)",
+                handle: "@carriebrewer",
+            },
+            {
+                name: "David Adam",
+                followers: 786,
+                views: "2.31",
+                place: "Istanbul, Turkey",
+                wallpaper: "url(https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)",
+                profilePic: "url(https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)",
+                handle: "@davidadam",
+            },
+            {
+                name: "Joycoast Wood",
+                followers: 576,
+                views: "7.83",
+                place: "Sydney, Australia",
+                wallpaper: "url(https://images.unsplash.com/photo-1508739773434-c26b3d09e071?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)",
+                profilePic: "url(https://images.unsplash.com/photo-1602024290243-cb6c7609dd6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)",
+                handle: "@joycoastwood",
+            },
+            {
+                name: "Rita Malcok",
+                followers: 905,
+                views: "6.32",
+                place: "New York, USA",
+                wallpaper: "url(https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2117&q=80)",
+                profilePic: "url(https://images.unsplash.com/photo-1595085610896-fb31cfd5d4b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80)",
+                handle: "@ritamalcok",
+            }
+        ]
+        const viewPort = document.querySelector("div.first-div");
+        let mainIndex;
+
+        function handleMidDivClick() {
+            let lastDiv = document.querySelector("div.last-div");
+            let middleDiv = document.querySelector("div.middle-div");
+            middleDiv.classList.remove("fadeInAnimation");
+            middleDiv.classList.add("fadeOutAnimation");
+            lastDiv.classList.add("fadeInAnimation");
+
+            let name = document.querySelector(".last-div .top-div .description .name");
+            let followers = document.querySelector(".last-div .top-div .description .followers");
+            let views = document.querySelector(".last-div .views-and-place .views");
+            let place = document.querySelector(".last-div .views-and-place .place");
+            name.innerHTML = people[mainIndex].name;
+            followers.innerHTML = `${people[mainIndex].followers} followers`;
+            views.innerHTML = `${people[mainIndex].views}k views`;
+            place.innerHTML = people[mainIndex].place;
+        }
+
+        function handleClick(index) {
+            mainIndex = index;
+            let smallDiv = document.querySelectorAll("div.small-div");
+            let middleDiv = document.querySelector("div.middle-div");
+            document.documentElement.style.setProperty("--profile-pic", people[index].profilePic);
+            document.documentElement.style.setProperty("--wallpaper", people[index].wallpaper);
+            for (const div of smallDiv) {
+                div.classList.remove("fadeInAnimation");
+                div.classList.add("fadeOutAnimation");
+            }
+            middleDiv.classList.add("fadeInAnimation");
+            let handle = document.querySelector(".middle-div .name-div .handle");
+            let name = document.querySelector(".middle-div .name-div .name");
+            handle.innerHTML = people[index].handle;
+            name.innerHTML = people[index].name;
+        }
+
+        window.onload = e => {
+            for (const [index, p] of people.entries()) {
+                viewPort.innerHTML += `
+                <div class="small-div fadeInAnimation div" style="--order: ${index}" onclick="handleClick(${index})">
+                    <div class="profile-pic image" style="background:${p.profilePic};">
+                    </div>
+                    <div class="description">
+                        <div class="name">${p.name}</div>
+                        <div class="followers">${p.followers} followers</div>
+                    </div>
+                    <div class="follow-button">
+                        <button class="follow">Follow</button>
+                    </div>
+                </div>`;
+            }
+        }
+    </script>
+</body>
+
+</html>
