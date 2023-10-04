@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Booking Calendar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white-bg: #f2f6fe;
+            --white: #ffffff;
+            --blue: #223874;
+            --light-blue: #4b67b9;
+        }
+
+        body {
+            background: var(--white-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        main {
+            background: var(--white);
+            width: 48rem;
+            border-radius: 1.5rem;
+        }
+
+        header {
+            background: var(--blue);
+            color: var(--white);
+            width: 100%;
+            padding: 2.5rem 2rem;
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .training {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .close {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .icon svg {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        section.calend {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 5rem;
+        }
+
+        section .calendar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        section .left-icon,
+        section .right-icon {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        section .day-div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #0d1218;
+        }
+
+        section .day-div .date {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        section .day-div .day {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        section.book {
+            display: flex;
+            padding: 1.5rem;
+            justify-content: space-between;
+            color: var(--white);
+            background: var(--blue);
+            margin: 2rem 7rem;
+            border-radius: 0.5rem;
+        }
+
+        section .booking {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        section .book-button {
+            padding: 1rem 1.5rem;
+            color: var(--blue);
+            background: var(--white);
+            border-radius: 0.25rem;
+            border: none;
+            max-height: 3rem;
+            padding: 0.5rem 2rem;
+            font-size: 1.1rem;
+            gap: 1rem;
+        }
+
+        section.book .booking .heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        section.book .booking .timing {
+            display: flex;
+            gap: 1rem;
+        }
+
+        section.book .booking .trainer {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        section.book .booking .trainer .trained-by {
+            font-size: 0.75rem;
+        }
+
+        section.book .booking .trainer .trainer-spec {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        section.book .booking .trainer .trainer-spec .image {
+            background: url(https://images.unsplash.com/photo-1602024290243-cb6c7609dd6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
+            height: 3.5rem;
+            width: 3.5rem;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid var(--light-blue);
+        }
+
+        section.book .booking .trainer .trainer-spec .name {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <div class="training">Book a training</div>
+            <div class="close icon">
+                <svg viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M3 21.32L21 3.32001" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M3 3.32001L21 21.32" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </g>
+                </svg>
+            </div>
+        </header>
+        <section class="calend">
+            <div class="calendar">
+                <div class="left-icon icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L9.41421 12L15.7071 18.2929C16.0976 18.6834 16.0976 19.3166 15.7071 19.7071C15.3166 20.0976 14.6834 20.0976 14.2929 19.7071L7.29289 12.7071C7.10536 12.5196 7 12.2652 7 12C7 11.7348 7.10536 11.4804 7.29289 11.2929L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289Z"
+                                fill="#9c9c9c"></path>
+                        </g>
+                    </svg>
+                </div>
+                <div class="day-div">
+                    <div class="date">Sept. 24</div>
+                    <div class="day">Today</div>
+                </div>
+                <div class="right-icon icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M8.29289 4.29289C8.68342 3.90237 9.31658 3.90237 9.70711 4.29289L16.7071 11.2929C17.0976 11.6834 17.0976 12.3166 16.7071 12.7071L9.70711 19.7071C9.31658 20.0976 8.68342 20.0976 8.29289 19.7071C7.90237 19.3166 7.90237 18.6834 8.29289 18.2929L14.5858 12L8.29289 5.70711C7.90237 5.31658 7.90237 4.68342 8.29289 4.29289Z"
+                                fill="#0d1218"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <section class="book">
+            <div class="booking">
+                <div class="heading">Bodypump</div>
+                <div class="timing">
+                    <div class="time">9.30</div>
+                    <div class="duration">60 min</div>
+                </div>
+                <div class="trainer">
+                    <div class="trained-by">Trained by</div>
+                    <div class="trainer-spec">
+                        <div class="image"></div>
+                        <div class="name">Emily Stark</div>
+                    </div>
+                </div>
+            </div>
+            <button class="book-button">Book a spot</button>
+        </section>
+        <section class="book">
+            <div class="booking">
+                <div class="heading">Bodypump</div>
+                <div class="timing">
+                    <div class="time">9.30</div>
+                    <div class="duration">60 min</div>
+                </div>
+                <div class="trainer">
+                    <div class="trained-by">Trained by</div>
+                    <div class="trainer-spec">
+                        <div class="image"></div>
+                        <div class="name">Emily Stark</div>
+                    </div>
+                </div>
+            </div>
+            <button class="book-button">Book a spot</button>
+        </section>
+    </main>
+    <script></script>
+</body>
+
+</html>
